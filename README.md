@@ -23,26 +23,26 @@ The Installation of Docker can be seen in https://docs.docker.com/
 Pull the image of cov from dockerhub:
 
 ```sh
-$ docker pull biopharm/cov:v1.0
+docker pull biopharm/cov:v1.0
 ```
 
 run the image in bash mode:
 
 ```sh
- $ docker run -it -p 8888:8888 --name [your/container/name] biopharm/cov:v1.0 bash
+ docker run -it -p 8888:8888 --name [your/container/name] biopharm/cov:v1.0 bash
 ```
 
 you can start a Jupyter Notebook server and interact  via your browser:
 
 ```sh
-$ conda activate cov
-$ jupyter notebook --notecook-dir=/root/cov --ip='*' --no-browser --allow-root
+conda activate cov
+jupyter notebook --notecook-dir=/root/cov --ip='*' --no-browser --allow-root
 ```
 
 test in the container, and modify the seqfile, hlafile, outdir in the cov.sh:
 
 ```sh
-$ bash cov.sh
+bash cov.sh
 
 '''
 #! /bin/bash
@@ -53,7 +53,6 @@ outdir=/root/cov/test/output
 
 python /root/cov/scripts/main.py -bl -t1 -t2 -s $seqfile -hlafile $hlafile -o $outdir
 '''
-optional arguments：
 
 ```
 
@@ -71,25 +70,25 @@ See cov.yaml
 
 #### Steps
 
-Download the latest version of cov from https://github.com/xuezhang335/cov
+Download the latest version of cov from https://github.com/xuezhang335/CoVEP
     
 
 ```shell
-$ git clone https://github.com/jiujiezz/cov.git
+git clone https://github.com/jiujiezz/cov.git
 ```
 
 Unzip the source code and go into the directory by using the following command:
 
 ```shell
-$ tar xvzf cov-*.tar.gz
+tar xvzf cov-*.tar.gz
 
-$ cd cov
+cd cov
 ```
 
 Invoke the shell script:
 
 ```shell
-$ bash cov.sh
+bash cov.sh
 ```
 
 
@@ -124,11 +123,11 @@ Supported allele and threshold of prediction tools seen in the file (HLA_Support
 
 | Epitope      | Tools                                                        |
 | :----------- | ------------------------------------------------------------ |
-| Linear B     | Chou-Fasman, Emini, Karplus-Schulz,  <br />Kolaskar-Tongaonkar, Parker, Bepipred, <br />EpitopeVec |
+| Linear B     | Chou-Fasman, Emini, Karplus-Schulz,  <br />Kolaskar-Tongaonkar, Parker, Bepipred |
 | MHC class I  | DeepHLApan, NetMHCpan-4.1, MHCflurry                         |
 | MHC class II | NetMHCIIpan-4.0, MixMHC2pred                                 |
 
-Prediction tools are shown as in the table, please note that 
+Prediction tools are shown as in the table, please note that linear B cell epitopes prediction is depend on the network and NetMHCIIpan maybe slow when meets long sequence.
 
 
 
@@ -139,7 +138,7 @@ Prediction tools are shown as in the table, please note that
 ### 2022.04
 
 v1.0
-xxx
+Support for linear B cell epitopes, class I and class II T cell epitopes prediction.
 
 
 
