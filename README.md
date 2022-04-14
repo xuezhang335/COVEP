@@ -2,7 +2,7 @@
 
 ## Despriction
 
-This is an ensemble toolkit for coronavirus B/T cell epitopes prediction, which provides a web sever and also supports downloading to run locally. It has been used for SARS-CoV-2, SARS-CoV, MERS-CoV and other four human coronaviruses (hCoV-229E, hCoV-HKU1, hCoV-OC43, hCoV-NL63) epitopes prediction and shared conserved epitopes analysis for peptide-based vaccine design and the result are presented in our database.  [COVIEdb – A database for potential immune epitopes of coronaviruses](http://biopharm.zju.edu.cn/coviedb/)
+This is an ensemble pipeline for coronavirus B/T cell epitopes prediction, which provides a web sever and also supports downloading to run locally. It has been used for SARS-CoV-2, SARS-CoV, MERS-CoV and other four human coronaviruses (hCoV-229E, hCoV-HKU1, hCoV-OC43, hCoV-NL63) epitopes prediction and shared conserved epitopes analysis for peptide-based vaccine design and the result are presented in our database.  [COVIEdb – A database for potential immune epitopes of coronaviruses](http://biopharm.zju.edu.cn/coviedb/)
 
 Workflow... 冠状病毒
 
