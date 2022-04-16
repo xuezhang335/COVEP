@@ -1,6 +1,6 @@
 # Pepline for B/T cell epitopes prediction
 
-## Despriction
+# Despriction
 
 This is an ensemble pipeline for coronavirus B/T cell epitopes prediction, which provides a web sever and also supports downloading to run locally. It has been used for SARS-CoV-2, SARS-CoV, MERS-CoV and other four human coronaviruses (hCoV-229E, hCoV-HKU1, hCoV-OC43, hCoV-NL63) epitopes prediction and shared conserved epitopes analysis for peptide-based vaccine design and the result are presented in our database. [COVIEdb – A database for potential immune epitopes of coronaviruses](http://biopharm.zju.edu.cn/coviedb/)
 
@@ -8,17 +8,13 @@ Workflow.
 
 Contact: zhanzhou@zju.edu.cn
 
-
-
-## Web Sever
+# Web Sever
 
 [COVIEdb – A database for potential immune epitopes of coronaviruses](http://biopharm.zju.edu.cn/coviedb/)
 
+# Download and installation
 
-
-## Download and installation
-
-### 1. Docker (Recommend)
+## 1. Docker (Recommend)
 
 The Installation of Docker can be seen in https://docs.docker.com/
 
@@ -31,7 +27,7 @@ docker pull biopharm/cov:v1.0
 run the image in bash mode:
 
 ```sh
- docker run -it -p 8888:8888 --name [your/container/name] biopharm/cov:v1.0 bash
+docker run -it -p 8888:8888 --name [your/container/name] biopharm/cov:v1.0 bash
 ```
 
 you can start a Jupyter Notebook server and interact via your browser:
@@ -58,17 +54,17 @@ python /root/cov/scripts/main.py -bl -t1 -t2 -s $seqfile -hlafile $hlafile -o $o
 
 ```
 
-### 2. Git (All the dependencies should be properly installed)
+## 2. Git (All the dependencies should be properly installed)
 
-#### System
+### System
 
 Linux
 
-#### Dependencies
+### Dependencies
 
 See cov.yaml
 
-#### Steps
+### Steps
 
 Download the latest version of cov from https://github.com/xuezhang335/CoVEP
 
@@ -90,9 +86,7 @@ Invoke the shell script:
 bash cov.sh
 ```
 
-
-
-## General Usage
+# General Usage
 
 ```shell
 Usage
@@ -123,10 +117,7 @@ Supported allele and threshold of prediction tools seen in the file (HLA_Support
 
 Prediction tools are shown as in the table, please note that linear B cell epitopes prediction is depend on the network and NetMHCIIpan maybe slow when meets long sequence.
 
-
-
-
-## Update log
+# Update log
 
 ### 2022.04
 
