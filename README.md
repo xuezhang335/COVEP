@@ -8,9 +8,13 @@ Workflow.
 
 Contact: zhanzhou@zju.edu.cn
 
+
+
 ## Web Sever
 
 [COVIEdb – A database for potential immune epitopes of coronaviruses](http://biopharm.zju.edu.cn/coviedb/)
+
+
 
 ## Download and installation
 
@@ -86,12 +90,13 @@ Invoke the shell script:
 bash cov.sh
 ```
 
+
+
 ## General Usage
 
 ```shell
 Usage
 python main.py -bl -t1 -t2 -s path/to/your/input/seqfile -hlafile path/to/your/hlafile -o directory/to/store/predicted/results
-```
 
 optional arguments:
 -bl Prediction for linear B cellepitopes. store_true
@@ -101,6 +106,7 @@ optional arguments:
 -hlafile csv file, which is necessary if t1 and t2 both are selected.
 -hla str, is necessary if t1 or t2 is selected.
 -o Directory to store predicted results.
+```
 
 Supported length
 B epitopes：pisition score；
@@ -109,16 +115,15 @@ T epitopes class II：15-25mer；
 
 Supported allele and threshold of prediction tools seen in the file (HLA_Support.xlsx)
 
-```
-
-
-| Epitope      | Tools                                                                           |
-| :----------- | ------------------------------------------------------------------------------- |
+| Epitope      | Tools                                                        |
+| :----------- | ------------------------------------------------------------ |
 | Linear B     | Chou-Fasman, Emini, Karplus-Schulz, <br />Kolaskar-Tongaonkar, Parker, Bepipred |
-| MHC class I  | DeepHLApan, NetMHCpan-4.1, MHCflurry                                            |
-| MHC class II | NetMHCIIpan-4.0, MixMHC2pred                                                    |
+| MHC class I  | DeepHLApan, NetMHCpan-4.1, MHCflurry                         |
+| MHC class II | NetMHCIIpan-4.0, MixMHC2pred                                 |
 
 Prediction tools are shown as in the table, please note that linear B cell epitopes prediction is depend on the network and NetMHCIIpan maybe slow when meets long sequence.
+
+
 
 
 ## Update log
@@ -127,4 +132,3 @@ Prediction tools are shown as in the table, please note that linear B cell epito
 
 v1.0
 Support for linear B cell epitopes, class I and class II T cell epitopes prediction.
-```
