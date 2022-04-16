@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 # Pepline for B/T cell epitopes prediction
 
 ## Despriction
 
 This is an ensemble pipeline for coronavirus B/T cell epitopes prediction, which provides a web sever and also supports downloading to run locally. It has been used for SARS-CoV-2, SARS-CoV, MERS-CoV and other four human coronaviruses (hCoV-229E, hCoV-HKU1, hCoV-OC43, hCoV-NL63) epitopes prediction and shared conserved epitopes analysis for peptide-based vaccine design and the result are presented in our database. [COVIEdb – A database for potential immune epitopes of coronaviruses](http://biopharm.zju.edu.cn/coviedb/)
 
-Workflow... 冠状病毒
+Workflow.
 
 Contact: zhanzhou@zju.edu.cn
 
@@ -13,7 +12,6 @@ Contact: zhanzhou@zju.edu.cn
 
 [COVIEdb – A database for potential immune epitopes of coronaviruses](http://biopharm.zju.edu.cn/coviedb/)
 
-=======
 # Pepline for B/T cell epitopes prediction 
 
 ## Despriction
@@ -30,7 +28,6 @@ Contact: zhanzhou@zju.edu.cn
 
 
 
->>>>>>> 6974f213f8dc89608c98134cc9ba454a014b60f5
 ## Download and installation
 
 ### 1. Docker (Recommend)
@@ -49,11 +46,7 @@ run the image in bash mode:
  docker run -it -p 8888:8888 --name [your/container/name] biopharm/cov:v1.0 bash
 ```
 
-<<<<<<< HEAD
 you can start a Jupyter Notebook server and interact via your browser:
-=======
-you can start a Jupyter Notebook server and interact  via your browser:
->>>>>>> 6974f213f8dc89608c98134cc9ba454a014b60f5
 
 ```sh
 conda activate cov
@@ -77,11 +70,8 @@ python /root/cov/scripts/main.py -bl -t1 -t2 -s $seqfile -hlafile $hlafile -o $o
 
 ```
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 6974f213f8dc89608c98134cc9ba454a014b60f5
 ### 2. Git (All the dependencies should be properly installed)
 
 #### System
@@ -95,13 +85,9 @@ See cov.yaml
 #### Steps
 
 Download the latest version of cov from https://github.com/xuezhang335/CoVEP
-<<<<<<< HEAD
-=======
-    
->>>>>>> 6974f213f8dc89608c98134cc9ba454a014b60f5
 
 ```shell
-git clone https://github.com/jiujiezz/cov.git
+git clone https://github.com/xuezhang335/CoVEP.git
 ```
 
 Unzip the source code and go into the directory by using the following command:
@@ -118,10 +104,9 @@ Invoke the shell script:
 bash cov.sh
 ```
 
-<<<<<<< HEAD
 ## General Usage
 
-```shell
+````shell
 Usage
 python main.py -bl -t1 -t2 -s path/to/your/input/seqfile -hlafile path/to/your/hlafile -o directory/to/store/predicted/results
 
@@ -131,14 +116,12 @@ optional arguments:
 -t2     Prediction for MHC class II T cell  epitopes.      store_true
 =======
 
-
 ## General Usage
-
-
 
 ```shell
 Usage    
 python main.py --bl --t1 --t2 -s path/to/your/input/seqfile -hlafile path/to/your/hlafile -o directory/to/store/predicted/results
+```
 
 optional arguments:
 --bl     Prediction for linear B cellepitopes.           store_true
@@ -157,9 +140,9 @@ T epitopes class I：8-11mer；
 T epitopes class II：15-25mer；
 
 Supported allele and threshold of prediction tools seen in the file (HLA_Support.xlsx)
-```
+````
 
-<<<<<<< HEAD
+
 | Epitope      | Tools                                                                           |
 | :----------- | ------------------------------------------------------------------------------- |
 | Linear B     | Chou-Fasman, Emini, Karplus-Schulz, <br />Kolaskar-Tongaonkar, Parker, Bepipred |
@@ -167,8 +150,6 @@ Supported allele and threshold of prediction tools seen in the file (HLA_Support
 | MHC class II | NetMHCIIpan-4.0, MixMHC2pred                                                    |
 
 Prediction tools are shown as in the table, please note that linear B cell epitopes prediction is depend on the network and NetMHCIIpan maybe slow when meets long sequence.
-
-=======
 
 
 | Epitope      | Tools                                                        |
@@ -179,20 +160,9 @@ Prediction tools are shown as in the table, please note that linear B cell epito
 
 Prediction tools are shown as in the table, please note that linear B cell epitopes prediction is depend on the network and NetMHCIIpan maybe slow when meets long sequence.
 
-
-
-
-
->>>>>>> 6974f213f8dc89608c98134cc9ba454a014b60f5
 ## Update log
 
 ### 2022.04
 
 v1.0
 Support for linear B cell epitopes, class I and class II T cell epitopes prediction.
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 6974f213f8dc89608c98134cc9ba454a014b60f5
