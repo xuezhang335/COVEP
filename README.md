@@ -34,7 +34,7 @@ you can start a Jupyter Notebook server and interact via your browser:
 
 ```sh
 conda activate cov
-jupyter notebook --notecook-dir=/root/cov --ip='*' --no-browser --allow-root
+jupyter notebook --notebook-dir=/root/cov --ip='*' --no-browser --allow-root
 ```
 
 test in the container, and modify the seqfile, hlafile, outdir in the cov.sh:
