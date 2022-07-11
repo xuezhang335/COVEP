@@ -63,6 +63,8 @@ def prediction(bl, t1, t2, task_name, seq_file, input_hla, outdir):
         process_iedb = iedb(task_name, seq_file, outdir)
         bl_merge_rank(process_iedb, task_name, outdir)
 
+
+
     if t1 == True:
         pepfile_for_hla1 = creatPepForHla1(seq_file, outdir)
         runMhcflurry(task_name, pepfile_for_hla1, input_hla, outdir)
