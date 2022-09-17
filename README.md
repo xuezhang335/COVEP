@@ -104,8 +104,8 @@ optional arguments:
 
 Supported length
 B epitopes：pisition score；
-T epitopes class I：8-11mer；
-T epitopes class II：15-25mer；
+T epitopes class I：8-11mer；（8-14）
+T epitopes class II：15-25mer；（12-25）
 
 Supported allele and threshold of prediction tools seen in the file (HLA_Support.xlsx)
 
