@@ -17,14 +17,16 @@ from scipy import stats
 # from keras import initializers
 from keras.models import load_model
 from tensorflow.keras.utils import CustomObjectScope
+import tensorflow.python.util.deprecation as deprecation
 from attention import Attention
 import multiprocessing as mp
 import tensorflow as tf
 
+tf.get_logger().setLevel('ERROR')   # warning
+deprecation._PRINT_DEPRECATION_WARNINGS = False  # future discard
+tf.compat.v1.disable_v2_behavior()  # ValueError: GRU(reset_after=False) is not compatible with GRU(reset_after=True)
 
-tf.compat.v1.disable_v2_behavior()  # 必须，ValueError: GRU(reset_after=False) is not compatible with GRU(reset_after=True)
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-
 curDir = os.path.dirname(os.path.realpath(__file__))+'/'
 HLA_seq = pd.read_csv(curDir + 'model/MHC_pseudo.dat', sep='\t')
 seqs = {}
@@ -93,6 +95,8 @@ def read_and_prepare_single(peptide, hla):
 def deephlapan_main(opt):
     i = datetime.datetime.now()
     print(str(i) + ' Prediction starting.....\n')
+    # print("="*30,"GPU USED","="*30,"tf version:",tf.__version__,"use GPU:",tf.test.is_gpu_available())
+
     peptide = opt.sequence
     hla = opt.hla
     dir = opt.WD
@@ -125,7 +129,7 @@ def deephlapan_main(opt):
                 result[i] = ("%.4f" % result[i])
                 result1[i] = ("%.4f" % result1[i])
                 f.write(str(df.seq_id[i]) + ',' + str(df.HLA[i]) + ',' + str(df.position[i]) + ',' + str(
-                    df.peptide[i]) + ',' + str(f'{result[i]:.4f}') + ',' + str(format(result1[i],'.4f')) + '\n')
+                    df.peptide[i]) + ',' + str(format(result[i],'.4f')) + ',' + str(format(result1[i],'.4f')) + '\n')
         else:
             f.write('single peptide,' + str(hla) + ',' + str(peptide) +
                     ',' + str(result[0]) + ',' + str(result1[0]) + '\n')
