@@ -42,7 +42,7 @@ def argCheck(args):
                 'Class I and class II T cell epitopes prediction are selected, please input hla file in the specified format.')
 
     print(f'''
-                                                        DeepTAP
+                                                        CoVEP
     ----------------------------------------------------------------------------------------------------------------------
     Prediction for {','.join(pred_options)} will be performed.
     Task name: {task_name}
