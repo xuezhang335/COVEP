@@ -74,7 +74,7 @@ Testing in the container, and modify the `seqfile`, `hlafile`, `outdir` in the c
     ```
 
 ## 3. Web sever
-CoVEP provides a [web sever](https://pgx.zju.edu.cn/coviedb2/pipeline.html) for the convenience of users. It only needs to submit sequences and HLA genes to make predictions without configuring the environment.
+CoVEP provides a [web sever](https://pgx.zju.edu.cn/coviedb2/tools/covep) for the convenience of users. It only needs to submit sequences and HLA genes to make predictions without configuring the environment.
 <br><br>
 
 # General Usage
