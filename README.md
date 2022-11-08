@@ -83,11 +83,11 @@ CoVEP needs to be called by running the `main.py` python file with inputting the
 
 ***Running command***
 
-    python main.py -bl all -t1 netmhcpan,mhcflurry -t2 all -s path/to/your/input/seqfile -hlafile path/to/your/hlafile -o directory/to/store/predicted/results
+    python main.py -bl iedb7 -t1 netmhcpan,mhcflurry -t2 all -s path/to/your/input/seqfile -hlafile path/to/your/hlafile -o directory/to/store/predicted/results
 
 ***parameters***
 
-    -bl         Tools used for linear B cell epitopes prediction, choose from [xx], eg. xx. Use `all` to select all available tools.
+    -bl         Tools used for linear B cell epitopes prediction, use `iedb7` to use seven IEDB linear B cell epitope tools.
     -t1         Tools used for MHC class I T cell epitopes prediction, choose from [netmhcpan,mhcflurry,deephlapan], eg. netmhcpan,mhcflurry. Use `all` to select all available tools.
     -t2         Tools used for MHC class II T cell epitopes prediction, choose from [netmhc2pan,mixmhc2pred], eg. netmhc2pan. Use `all` to select all available tools.
     -seqfile    txt file contains one or more fasta sequences, see test/data/2019-ncov-test.txt for example.

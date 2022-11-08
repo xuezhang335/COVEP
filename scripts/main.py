@@ -25,15 +25,33 @@ def command_line():
 
 def argCheck(args): 
     bl, t1, t2 = args.bl, args.t1, args.t2
-    if args.bl: bl = ['xx', 'xx', 'xx'] if args.bl=='all' else args.bl.split(',')
-    if args.t1: t1 = ['netmhcpan', 'mhcflurry', 'deephlapan'] if args.t1=='all' else args.t1.split(',')
-    if args.t2: t2 = ['netmhc2pan', 'mixmhc2pred'] if args.t2=='all' else args.t2.split(',')
 
+    if args.bl != None and args.bl !='iedb7':
+        KeyError(args.bl,'is not a validaed argument.')
+
+    if args.t1 != None:
+        if args.t1=='all':
+            t1 = ['netmhcpan', 'mhcflurry', 'deephlapan'] 
+        else:
+            t1_list = args.t1.split(',')
+            t1 = [i for i in t1_list if i in ['netmhcpan', 'mhcflurry', 'deephlapan']]
+
+    if args.t2 != None:
+        if args.t2=='all':
+            t2 = ['netmhc2pan', 'mixmhc2pred'] 
+        else:
+            t2_list = args.t2.split(',')
+            t2 = [i for i in t2_list if i in ['netmhc2pan', 'mixmhc2pred']]
+                
     pred_options = [i for i,j in (zip(['bl','t1','t2'],[bl, t1, t2])) if j!=None]
 
     seq_file = args.seqfile
     task_name = seq_file.split('.')[0].split('/')[-1]
-    input_hla = args.hlafile if args.hlafile else args.hlastr.split(',')
+
+    if args.t1 or args.t2:
+        input_hla = args.hlafile if args.hlafile else args.hlastr.split(',')
+    else: input_hla = None
+
     outdir = os.path.dirname(os.path.abspath(__file__)) if args.outdir==None else args.outdir
 
     if t1 and t2:
@@ -42,7 +60,7 @@ def argCheck(args):
                 'Class I and class II T cell epitopes prediction are selected, please input hla file in the specified format.')
 
     print(f'''
-                                                        CoVEP
+                                                        COVEP
     ----------------------------------------------------------------------------------------------------------------------
     Prediction for {','.join(pred_options)} will be performed.
     Task name: {task_name}
@@ -66,12 +84,12 @@ def argCheck(args):
 
 def prediction(bl, t1, t2, task_name, seq_file, input_hla, outdir):
 
-    if bl:
+    if bl == 'iedb7':
         from bl_functions import iedb
         process_iedb = iedb(task_name, seq_file, outdir)
         bl_merge_rank(process_iedb, task_name, outdir)
 
-    if t1:
+    if t1!=[] and t1!=None:
         from t1_functions import runMhcflurry, runNetmhcpan, runDeephlapan
         pepfile_for_hla1 = creatPepForHla1(seq_file, outdir)
 
@@ -85,7 +103,7 @@ def prediction(bl, t1, t2, task_name, seq_file, input_hla, outdir):
 
         t1_merge_rank(t1, task_name, outdir)
 
-    if t2:
+    if t2!=[] and t2!=None:
         from t2_functions import runMixmhc2pred, runNetmhc2pan
         pepfile_for_hla2 = creatPepForHla2(seq_file, outdir)
 
