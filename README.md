@@ -48,11 +48,11 @@ This approach requires [Docker](https://docs.docker.com/) to be installed on you
 
 Pull the [cov](https://hub.docker.com/repository/docker/biopharm/covep) image from dockerhub:
 
-    docker pull biopharm/cov:v1.0
+    docker pull biopharm/covep
 
 run image and enter the generated container in bash mode:
 
-    docker run -it -p 8888:8888 --name [your/container/name] biopharm/cov:v1.0 bash
+    docker run -it -p 8888:8888 --name [your/container/name] biopharm/covep bash
 
 you can start a Jupyter Notebook server and interact via your browser:
 
