@@ -1,22 +1,22 @@
-# CoVEP -- Pepline for B/T cell epitopes prediction
+# COVEP -- Pepline for B/T cell epitopes prediction
 
 # Introduction
-CoVEP is an ensemble pipeline for coronavirus B/T cell epitopes prediction, which provides [web sever](https://pgx.zju.edu.cn/coviedb2/pipeline.html) , [Docker image](https://hub.docker.com/repository/docker/zhangxue123/cov) and also supports downloading from [Github-CoVEP](https://github.com/xuezhang335/CoVEP). It has been used for SARS-CoV-2, SARS-CoV, MERS-CoV and other four human coronaviruses (hCoV-229E, hCoV-HKU1, hCoV-OC43, hCoV-NL63) epitopes prediction and shared conserved epitopes analysis for peptide-based vaccine design and the result are presented in our database [COVIEdb](http://biopharm.zju.edu.cn/coviedb2/).
+COVEP is an ensemble pipeline for coronavirus B/T cell epitopes prediction, which provides [web sever](https://pgx.zju.edu.cn/coviedb2/tools/COVEP) , [Docker image](https://hub.docker.com/repository/docker/biopharm/COVEP/general) and also supports downloading from [Github-COVEP](https://github.com/zjupgx/COVEP). It has been used for SARS-CoV-2, SARS-CoV, MERS-CoV and other four human coronaviruses (hCoV-229E, hCoV-HKU1, hCoV-OC43, hCoV-NL63) epitopes prediction and shared conserved epitopes analysis for peptide-based vaccine design and the result are presented in our database [COVIEdb](http://pgx.zju.edu.cn/coviedb/).
 
 Contact: zhanzhou@zju.edu.cn
 <br><br>
 
 # Download and installation
-CoVEP is a python program, and requires python to be installed on your system. We highly recommend using [Conda](https://www.anaconda.com/products/distribution) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) to manage environments, i.e. use Conda to create an environment with dependencies installed where you can use CoVEP. It’s possible to use other methods, but this documentation presupposes that you have Conda installed.
+COVEP is a python program, and requires python to be installed on your system. We highly recommend using [Conda](https://www.anaconda.com/products/distribution) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) to manage environments, i.e. use Conda to create an environment with dependencies installed where you can use COVEP. It’s possible to use other methods, but this documentation presupposes that you have Conda installed.
 
 It is worth noting that if you use docker to run, then you do not need to consider the environment, all dependencies have been packaged in the docker image, see [section-Docker](#docker) for instructions.
 
 ## 1. Git
-CoVEP runs under Linux System, and all the dependencies should be properly pre-installed. The file of `cov.yaml` lsits the version of the dependency packages.
+COVEP runs under Linux System, and all the dependencies should be properly pre-installed. The file of `cov.yaml` lsits the version of the dependency packages.
 
-Download the latest version from [GitHub-CoVEP](https://github.com/xuezhang335/CoVEP) :
+Download the latest version from [GitHub-COVEP](https://github.com/zjupgx/COVEP) :
 
-    git clone https://github.com/xuezhang335/CoVEP.git
+    git clone git@github.com:zjupgx/COVEP.git
 
 Unzip the source code and go into the directory:
 
@@ -44,7 +44,7 @@ You can also directly run the `main.py` python file in terminal.
 
 
 ## 2. Docker
-This approach requires [Docker](https://docs.docker.com/) to be installed on your system. Conda is installed in the image, so it will be relatively large, about 6.3G. For easy editing and visualization, jupyter has been built into the image runtime environment. The workdir of CoVEP is `/root/cov`.
+This approach requires [Docker](https://docs.docker.com/) to be installed on your system. Conda is installed in the image, so it will be relatively large, about 6.3G. For easy editing and visualization, jupyter has been built into the image runtime environment. The workdir of COVEP is `/root/cov`.
 
 Pull the [cov](https://hub.docker.com/repository/docker/zhangxue123/cov) image from dockerhub:
 
@@ -74,12 +74,12 @@ Testing in the container, and modify the `seqfile`, `hlafile`, `outdir` in the c
     ```
 
 ## 3. Web sever
-CoVEP provides a [web sever](https://pgx.zju.edu.cn/coviedb2/tools/covep) for the convenience of users. It only needs to submit sequences and HLA genes to make predictions without configuring the environment.
+COVEP provides a [web sever](https://pgx.zju.edu.cn/coviedb2/tools/COVEP) for the convenience of users. It only needs to submit sequences and HLA genes to make predictions without configuring the environment.
 <br><br>
 
 # General Usage
 
-CoVEP needs to be called by running the `main.py` python file with inputting the specified parameters. Users can modify the parameters of the `bash.cov` script to run, or run directly on the terminal command line.
+COVEP needs to be called by running the `main.py` python file with inputting the specified parameters. Users can modify the parameters of the `bash.cov` script to run, or run directly on the terminal command line.
 
 ***Running command***
 
