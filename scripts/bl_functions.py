@@ -98,7 +98,7 @@ def runEpitopevec(task_name, seq_file, outdir):
     print('In progress.....')
     outfile_tmp = f'{outdir}/tmp/bl_{task_name}_epitopevec.csv'
     os.system(
-        f'conda run -n cov python {cov_dir}/tools/epitopevec/main.py -i {seq_file} -o {outfile_tmp}')
+        f'python {cov_dir}/tools/epitopevec/main.py -i {seq_file} -o {outfile_tmp}')
 
     outfile = f'{outdir}/bl_{task_name}_epitopevec.csv'
     df = pd.read_csv(outfile_tmp)

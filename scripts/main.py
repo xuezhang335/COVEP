@@ -1,4 +1,5 @@
 import os, argparse
+import time
 from preprocess import *
 from result_process import *
 
@@ -59,20 +60,20 @@ def argCheck(args):
             raise ValueError(
                 'Class I and class II T cell epitopes prediction are selected, please input hla file in the specified format.')
 
-    print(f'''
-                                                        COVEP
-    ----------------------------------------------------------------------------------------------------------------------
-    Prediction for {','.join(pred_options)} will be performed.
-    Task name: {task_name}
-    Linear B epitope prediction: {bl}
-    MHC I binding prediction: {t1}
-    MHC II binding prediction: {t2}
-    Seq File: {seq_file}
-    HLA : {input_hla}
-    Output Directory: {outdir}
-    ----------------------------------------------------------------------------------------------------------------------
+    # print(f'''
+    #                                                     COVEP
+    # ----------------------------------------------------------------------------------------------------------------------
+    # Prediction for {','.join(pred_options)} will be performed.
+    # Task name: {task_name}
+    # Linear B epitope prediction: {bl}
+    # MHC I binding prediction: {t1}
+    # MHC II binding prediction: {t2}
+    # Seq File: {seq_file}
+    # HLA : {input_hla}
+    # Output Directory: {outdir}
+    # ----------------------------------------------------------------------------------------------------------------------
 
-    ''')
+    # ''')
 
     if not os.path.exists(outdir + '/cov_tools_predResult'):
         os.mkdir(outdir + '/cov_tools_predResult')
@@ -100,6 +101,7 @@ def prediction(bl, t1, t2, task_name, seq_file, input_hla, outdir):
                 runNetmhcpan(task_name, pepfile_for_hla1, input_hla, outdir)
             if i == 'deephlapan':
                 runDeephlapan(task_name, pepfile_for_hla1, input_hla, outdir)
+            print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
 
         t1_merge_rank(t1, task_name, outdir)
 
@@ -112,9 +114,10 @@ def prediction(bl, t1, t2, task_name, seq_file, input_hla, outdir):
                 runNetmhc2pan(task_name, pepfile_for_hla2, input_hla, outdir)
             if i == 'mixmhc2pred':
                 runMixmhc2pred(task_name, pepfile_for_hla2, input_hla, outdir)
+            print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
         t2_merge_rank(t2, task_name, outdir)
 
-    os.system(f'rm -r {outdir}/tmp')
+    # os.system(f'rm -r {outdir}/tmp')
     print('-'*50, ' Prediction end! ', '-'*50)
 
     return

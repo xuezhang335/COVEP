@@ -39,16 +39,18 @@ def t1_merge_rank(t1, task_name, outdir):
             merge_result = df.iloc[:,0:4]
 
         if method=='deephlapan':
-            merge_result[method+'_BS_score'] = df['Bindingscore']
-            merge_result[method+'_BS_label'] = df['binding_label']
-            merge_result[method+'_IS_score'] = df['Immunogenicscore']
-            merge_result[method+'_IS_label'] = df['immuno_label']
+            merge_result[method+'_BS'] = df['Bindingscore']
+            merge_result[method+'_BSLabel'] = df['binding_label']
+            merge_result[method+'_IS'] = df['Immunogenicscore']
+            merge_result[method+'_ISLlabel'] = df['immuno_label']
         elif method=='netmhcpan':
-            merge_result[method+'_score'] = df['BArank']
+            merge_result[method+'_rank(%)'] = df['BArank']
             merge_result[method+'_label'] = df['pred_label']
         elif method=='mhcflurry':
-            merge_result[method+'_score'] = df['presentation_percentile']
+            merge_result[method+'_rank(%)'] = df['presentation_percentile']
             merge_result[method+'_label'] = df['pred_label']
+            merge_result[method+'_rank(%)']=merge_result[method+'_rank(%)'].round(decimals=4)
+
 
     num_methods = len(methods)+1 if 'deephlapan' in methods else len(methods)
     merge_result['pred_label'] = merge_result.iloc[:,[4+i*2+1 for i in range(num_methods)]].apply(np.sum, axis=1)
@@ -67,10 +69,10 @@ def t2_merge_rank(t2, task_name, outdir):
             merge_result = df.iloc[:,0:4]
 
         if method == 'netmhc2pan':
-            merge_result[method+'_score'] = df['Rank']
+            merge_result[method+'_rank(%)'] = df['Rank']
             merge_result[method+'_label'] = df['pred_label']
         if method == 'mixmhc2pred':
-            merge_result[method+'_score'] = df['%Rank']
+            merge_result[method+'_rank(%)'] = df['%Rank']
             merge_result[method+'_label'] = df['pred_label']
 
     num_methods = len(methods)

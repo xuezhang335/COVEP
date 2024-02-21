@@ -21,15 +21,16 @@ def runMixmhc2pred(task_name, pep2_file, input_hla, outdir):
 
     if type(input_hla)==type(''):
         df = pd.read_csv(input_hla)
-        hla2 = list(df.hla2.dropna())
+        hla2 = list(df.HLA2.dropna())
     else:
         hla2 = input_hla
 
     str_hla2 = ' '.join(hla2)
+    print(str_hla2)
     outfile_tmp = outdir + '/tmp/mixmhc2pred_orgin.txt'
 
     os.system(
-        f'{cov_dir}/tools/MixMHC2pred-1.2/MixMHC2pred_unix -i {infile} -o {outfile_tmp} -a {str_hla2}')
+        f'{cov_dir}/tools/MixMHC2pred-2.0/MixMHC2pred_unix --no_context -i {infile} -o {outfile_tmp} -a {str_hla2}')
 
     lines = (i for i in open(outdir + '/tmp/mixmhc2pred_orgin.txt')
              if str(i)[0] != '#')
@@ -37,9 +38,14 @@ def runMixmhc2pred(task_name, pep2_file, input_hla, outdir):
     f.writelines(lines)
     f.close()
 
-    result_txt = np.loadtxt(
-        outdir + '/tmp/mixmhc2pred_orgin(1).txt', dtype=str)
-    result_txtdf = pd.DataFrame(result_txt[1:], columns=result_txt[0])
+    # result_txt = np.loadtxt(outdir + '/tmp/mixmhc2pred_orgin(1).txt', dtype=str)
+    # result_txtdf = pd.DataFrame(result_txt[1:], columns=result_txt[0])
+
+    result_txtdf = pd.read_csv(outdir + '/tmp/mixmhc2pred_orgin(1).txt', na_filter=False, sep='\t')
+
+    result_txtdf = result_txtdf.drop(columns=['Context'])
+    result_txtdf = result_txtdf.astype(str)
+
     result_txtdf.insert(0, 'Position', pos_list)
     result_txtdf.insert(0, 'Seq_id', id_list)
 
@@ -55,7 +61,8 @@ def runMixmhc2pred(task_name, pep2_file, input_hla, outdir):
         for c in rank_clomun:
             result['%Rank'].append(result_txtdf.loc[i, c])
     result = pd.DataFrame(result)
-    result['pred_label'] = result['%Rank'].map(lambda x:1 if float(x)<2 else 0)
+    result = result[result['%Rank']!='NA']
+    result['pred_label'] = result['%Rank'].map(lambda x:1 if x!='NA' and float(x)<2 else 0)
     result.to_csv(
         outdir + f'/cov_tools_predResult/t2_{task_name}_mixmhc2pred.csv', index=False)
     print('MixMHC2pred Prediction end.')
@@ -73,7 +80,7 @@ def runNetmhc2pan(task_name, pep2_file, input_hla, outdir):
 
     if type(input_hla)==type(''):
         df = pd.read_csv(input_hla)
-        hla2 = list(df.hla2.dropna())
+        hla2 = list(df.HLA2.dropna())
     else:
         hla2 = input_hla
 
@@ -100,6 +107,9 @@ def runNetmhc2pan(task_name, pep2_file, input_hla, outdir):
 
     os.system(
         f'{cov_dir}/tools/netMHCIIpan-4.0/netMHCIIpan -f {infile} -inptype 1 -BA -xls -a {str_hla2} -xlsfile {outfile_tmp} > {terminalout}')  # 
+
+    print('='*30)
+    print(f'{cov_dir}/tools/netMHCIIpan-4.0/netMHCIIpan -f {infile} -inptype 1 -BA -xls -a {str_hla2} -xlsfile {outfile_tmp} > {terminalout}')  # 
 
     processNetmhc2panOutput(
         task_name, pep_list, id_list, pos_list, hla2, outdir)

@@ -28,7 +28,7 @@ def runDeephlapan(task_name, pep1_file, input_hla, outdir):
 
     if type(input_hla)==type(''):
         df = pd.read_csv(input_hla)
-        hla1 = list(df.hla1.dropna())
+        hla1 = list(df.HLA1.dropna())
     else:
         hla1 = input_hla
 
@@ -80,7 +80,7 @@ def runMhcflurry(task_name, pep1_file, input_hla, outdir):
     hla_dict = {}
     if type(input_hla)==type(''):
         df = pd.read_csv(input_hla)
-        hla1 = list(df.hla1.dropna())
+        hla1 = list(df.HLA1.dropna())
     else:
         hla1 = input_hla
 
@@ -89,7 +89,8 @@ def runMhcflurry(task_name, pep1_file, input_hla, outdir):
         hla_dict[key] = [hla.split("-")[-1].replace(':', '')]
 
     predictor = Class1PresentationPredictor.load()
-    result = predictor.predict(peptides=pep_list, alleles=hla_dict, verbose=0)
+    result_raw = predictor.predict(peptides=pep_list, alleles=hla_dict, verbose=0)
+    result = pd.DataFrame(result_raw)
 
     result['sample_name'] = result['sample_name'].apply(lambda x: int(x[6:]))
     result = result.sort_values(by=['peptide_num','sample_name'])
@@ -124,7 +125,7 @@ def runNetmhcpan(task_name, pep1_file, input_hla, outdir):
 
     if type(input_hla)==type(''):
         df = pd.read_csv(input_hla)
-        hla1 = list(df.hla1.dropna())
+        hla1 = list(df.HLA1.dropna())
     else:
         hla1 = input_hla
 
