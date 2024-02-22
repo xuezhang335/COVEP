@@ -35,7 +35,7 @@ def creatPepForHla2(seq_file, outdir):
         seq_id = str(record.id)
         seq = str(record.seq)
         for i in range(len(seq)):
-            for j in range(15, 22):
+            for j in range(12, 22):
                 if i+j <= len(seq):
                     pep_list.append(seq[i:i+j])
                     pos_list.append(str(i+1) + '_' + str(i+j+1-1))
